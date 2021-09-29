@@ -5,7 +5,7 @@
  */
 package de.neemann.gui;
 
-import de.neemann.digital.lang.Lang;
+import de.neemann.digiblock.lang.Lang;
 
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;

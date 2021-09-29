@@ -2,9 +2,9 @@
 [![codecov](https://codecov.io/gh/hneemann/Digital/branch/master/graph/badge.svg)](https://codecov.io/gh/hneemann/Digital)
 [![Download](distribution/Download.svg)](https://github.com/hneemann/Digital/releases/latest/download/Digital.zip)
 
-# Digital #
+# Digiblock #
 
-Digital is a easy-to-use digital logic designer and circuit simulator designed for educational purposes.
+Digiblock is a easy-to-use digital logic designer and circuit simulator designed for educational purposes.
 
 ![screnshot](distribution/screenshot.png)
 
@@ -23,7 +23,7 @@ If there are any problems starting Digital on your system, please try to
 run Digital from a command line:
 
 ```
-java -jar Digital.jar
+java -jar Digiblock.jar
 ```
 
 ## Features ##
