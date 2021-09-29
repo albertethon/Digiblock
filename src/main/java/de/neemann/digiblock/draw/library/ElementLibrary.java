@@ -31,6 +31,7 @@ import de.neemann.digiblock.gui.components.graphics.GraphicCard;
 import de.neemann.digiblock.gui.components.graphics.LedMatrix;
 import de.neemann.digiblock.gui.components.graphics.VGA;
 import de.neemann.digiblock.gui.components.terminal.Keyboard;
+import de.neemann.digiblock.gui.components.terminal.Serial.SerialPort;
 import de.neemann.digiblock.gui.components.terminal.Terminal;
 import de.neemann.digiblock.lang.Lang;
 import de.neemann.digiblock.plugin.lattice.*;
@@ -146,7 +147,8 @@ public class ElementLibrary implements Iterable<ElementLibrary.ElementContainer>
                                 .add(Terminal.DESCRIPTION)
                                 .add(VGA.DESCRIPTION)
                                 .add(MIDI.DESCRIPTION)
-                                .add(PinControl.DESCRIPTION)))
+                                .add(PinControl.DESCRIPTION)
+                                .add(SerialPort.DESCRIPTION)))
                 .add(new LibraryNode(Lang.get("lib_wires"))
                         .add(Ground.DESCRIPTION)
                         .add(VDD.DESCRIPTION)
@@ -230,7 +232,8 @@ public class ElementLibrary implements Iterable<ElementLibrary.ElementContainer>
                                 .add(LRom.DESCRIPTION)
                                 .add(LRamDP.DESCRIPTION)
 //                                .add(RegsFile.DESCRIPTION)
-                                .add(PLL.DESCRIPTION))));
+                                .add(PLL.DESCRIPTION)
+                                .add(EFB.DESCRIPTION))));
 
         addExternalJarComponents(jarFile);
 

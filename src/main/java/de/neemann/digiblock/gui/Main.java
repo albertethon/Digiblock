@@ -5,6 +5,7 @@
  */
 package de.neemann.digiblock.gui;
 
+import com.sun.java.swing.plaf.gtk.resources.gtk;
 import de.neemann.digiblock.analyse.AnalyseException;
 import de.neemann.digiblock.analyse.ModelAnalyser;
 import de.neemann.digiblock.analyse.SubstituteLibrary;
@@ -12,7 +13,11 @@ import de.neemann.digiblock.analyse.TruthTable;
 import de.neemann.digiblock.analyse.expression.format.FormatToExpression;
 import de.neemann.digiblock.core.*;
 import de.neemann.digiblock.core.element.ElementAttributes;
+import de.neemann.digiblock.core.element.Key;
 import de.neemann.digiblock.core.element.Keys;
+import de.neemann.digiblock.core.extern.Application;
+import de.neemann.digiblock.core.extern.ApplicationIVerilog;
+import de.neemann.digiblock.core.extern.ApplicationIverilogTb;
 import de.neemann.digiblock.core.io.Button;
 import de.neemann.digiblock.core.io.*;
 import de.neemann.digiblock.core.memory.Register;
@@ -150,6 +155,7 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
     private File baseFilename;
     private File filename;
     private File rarsTempFile;
+    private File gtkwaveTempFile;
     private FileHistory fileHistory;
     private boolean modifiedPrefixVisible = false;
 
@@ -203,6 +209,8 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
 
         circuitComponent = new CircuitComponent(this, library, shapeFactory);
         circuitComponent.addListener(this);
@@ -265,27 +273,7 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
 
         menuBar.add(WindowManager.getInstance().registerAndCreateMenu(this));
 
-        /*
-        *   在菜单栏中添加 TestBench 选项
-         */
-        JMenu testBenchMenu = new JMenu(Lang.get("menu_testBench"));
-        menuBar.add(testBenchMenu);
-        testBenchMenu.add(new ToolTipAction(Lang.get("menu_testBench_create")) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Path target = Paths.get("java.io.tmpdir");
-                    loadRecourseFromJarByFolder("/testbench", target.toFile().getAbsolutePath());
-                    target.toFile().deleteOnExit();
-                    URI uri = target.resolve("testbench/index.html").toUri();
-                    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-                    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE))
-                        desktop.browse(uri);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }.setToolTip(Lang.get("menu_testBench_create_tt")).createJMenuItem());
+        createTestbench(menuBar);
 
         JMenu helpMenu = new JMenu(Lang.get("menu_help"));
         helpMenu.add(new ToolTipAction(Lang.get("menu_help_elements")) {
@@ -1409,6 +1397,78 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
         }
                 .setToolTip(Lang.get("menu_RARS_tt"))
                 .createJMenuItem());
+
+    }
+
+    /**
+     * Create the TestBench menu
+     *
+     * @param menuBar the menu bar
+     */
+    private void createTestbench(JMenuBar menuBar) {
+        JMenu testBenchMenu = new JMenu(Lang.get("menu_testBench"));
+        menuBar.add(testBenchMenu);
+        testBenchMenu.add(new ToolTipAction(Lang.get("menu_testBench_create")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Path target = Paths.get("java.io.tmpdir");
+                    loadRecourseFromJarByFolder("/testbench", target.toFile().getAbsolutePath());
+                    target.toFile().deleteOnExit();
+                    URI uri = target.resolve("testbench/index.html").toUri();
+                    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+                    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE))
+                        desktop.browse(uri);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }.setToolTip(Lang.get("menu_testBench_create_tt")).createJMenuItem());
+        testBenchMenu.add(new ToolTipAction(Lang.get("menu_gtkWave_create")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    File gtkDir = Settings.getInstance().get(Keys.SETTINGS_GTKWAVE_PATH);
+                    Path p = Paths.get(gtkDir.getAbsolutePath());
+                    String gtk = p.getParent().resolve("gtkwave.exe").toString();
+                    Runtime.getRuntime().exec(gtk);
+                } catch (IOException ei) {
+                    ei.printStackTrace();
+                }
+            }
+        }.setToolTip(Lang.get("menu_gtkWave_create_tt")).createJMenuItem());
+        testBenchMenu.add(new ToolTipAction(Lang.get("menu_iverilog_create")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AttributeDialog adg = new AttributeDialog(Main.this, IverilogSettings.getInstance().getKeys(), IverilogSettings.getInstance().getAttributes());
+                ElementAttributes modified = adg.setDialogTitle(Lang.get("menu_iverilog_create")).showDialog();
+                ApplicationIverilogTb app = new ApplicationIverilogTb();
+                File rtlDir = IverilogSettings.getInstance().get(Keys.SETTINGS_IVERILOG_SOURCE_PATH);
+                File tbDir = IverilogSettings.getInstance().get(Keys.SETTINGS_IVERILOG_TESTBENCH_PATH);
+                System.out.println(rtlDir.toString());
+                System.out.println(tbDir.toString());
+                try {
+                    if (!rtlDir.getName().isEmpty()) {
+                        String message = app.execIvl(rtlDir, tbDir);
+                       if (message != null && !message.isEmpty()) {
+                           createError(true, Lang.get("msg_checkResult") + "\n\n" + message).show();
+                       }
+                        String messageVpp = app.execVpp(rtlDir);
+                    }
+                } catch (IOException ei) {
+                    createError(true, Lang.get("msg_checkResult")).addCause(ei).show();
+                } finally {
+                    IverilogSettings.getInstance().getAttributes().getValuesFrom(modified);
+                }
+
+            }
+            private ErrorMessage createError(boolean consistent, String message) {
+                if (!consistent)
+                    message = Lang.get("msg_codeNotConsistent") + "\n\n" + message;
+                return new ErrorMessage(message);
+            }
+        }.setToolTip(Lang.get("menu_iverilog_create_tt")).createJMenuItem());
+
 
     }
 
