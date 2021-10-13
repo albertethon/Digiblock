@@ -171,6 +171,8 @@ public final class ShapeFactory {
         map.put(LRamDP.DESCRIPTION.getName(), (attr, inputs, outputs) -> new RAMShape(attr, LRamDP.DESCRIPTION, 6));
         map.put(RegsFile.DESCRIPTION.getName(), RectShape::new);
         map.put(PLL.DESCRIPTION.getName(), ((attributes, inputs, outputs) -> new GenericShape(PLL.DESCRIPTION.getName(), inputs, outputs, attributes.getLabel(), true, 6)));
+        map.put(EFB.DESCRIPTION.getName(), ((attributes, inputs, outputs) -> new GenericShape(EFB.DESCRIPTION.getName(),
+                inputs, outputs, attributes.getLabel(), true, 7)));
 
         // disables string formatting for external components, see #272
         map.put(External.DESCRIPTION.getName(),

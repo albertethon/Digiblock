@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fsm>
+  <states>
+    <state>
+      <values>sign=1</values>
+      <position x="-120.0" y="0.0"/>
+      <number>0</number>
+      <name></name>
+      <radius>70</radius>
+      <isInitial>true</isInitial>
+    </state>
+    <state>
+      <values>sign=0</values>
+      <position x="180.0" y="0.0"/>
+      <number>1</number>
+      <name></name>
+      <radius>70</radius>
+      <isInitial>false</isInitial>
+    </state>
+  </states>
+  <transitions>
+    <transition>
+      <values></values>
+      <position x="30.0" y="27.023079"/>
+      <fromState reference="../../../states/state"/>
+      <toState reference="../../../states/state[2]"/>
+      <condition>start=1 &amp; rdy=0</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="30.0" y="-53.0"/>
+      <fromState reference="../../../states/state[2]"/>
+      <toState reference="../../../states/state"/>
+      <condition>stop=1 &amp; done=1</condition>
+    </transition>
+  </transitions>
+</fsm>

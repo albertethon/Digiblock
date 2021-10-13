@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes>
+    <entry>
+      <string>isGeneric</string>
+      <boolean>true</boolean>
+    </entry>
+  </attributes>
+  <visualElements>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Q</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>32</int>
+        </entry>
+      </elementAttributes>
+      <pos x="480" y="520"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>clk</string>
+        </entry>
+      </elementAttributes>
+      <pos x="320" y="560"/>
+    </visualElement>
+    <visualElement>
+      <elementName>fir.dig</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>order := 11;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="380" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>ROM</elementName>
+      <elementAttributes>
+        <entry>
+          <string>AddrBits</string>
+          <int>8</int>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>16</int>
+        </entry>
+        <entry>
+          <string>Data</string>
+          <data>0,19,12,fe,4,20,26,d,fb,9,19,a,ec,e6,fb,1,ea,d8,e8,2,0,ec,ee,c,1d,e,fe,c,25,21,4,
+fa,c,16,ff,e4,e9,fe,fc,e2,da,f2,7,fd,eb,f7,16,1e,a,0,14,27,18,fc,fb,f,10,f3,df,ed,
+0,f6,dd,df,fc,a,fa,ee,2,1e,1c,5,3,1b,25,e,f6,fd,10,7,e8,de,f2,0,ef,db,e8,5,a,f7,f3,
+e,23,17,2,8,20,20,3,f2,0,e,fd,e0,e0,f8,fe,e9,dd,f2,d,9,f6,fb,18,25,11,0,e,22,18,f9,
+f0,3,a,f2,db,e5,fd,fb,e4,e2,fe,12,6,f6,4,21,23,a,0,13,21,d,f0,f1,5,4,e8,d9,ec,0,f6,
+e2,ea,9,15,3,f9,e,26,1e,4,2,17,1c,1,ea,f4,6,fc,df,db,f4,2,f2,e3,f4,12,14,0,fe,18,
+28,16,ff,5,1a,14,f6,e7,f7,5,f3,da,e0,fc,2,ee,e7,0,19,12,fe,4,20,26,d,fb,9,19,a,ec,
+e6,fb,1,ea,d8,e8,2,0,ec,ee,c,1d,e,fe,c,25,21,4,fa,c,16,ff,e4,e9,fe,fc,e2,da,f2,7,
+fd,eb,f7,16,1e,a,0,14,27,18,fc,fb,f</data>
+        </entry>
+        <entry>
+          <string>lastDataFile</string>
+          <string>C:\Users\ssb\Desktop\fir滤波器\输入digiblock的数据\mem3.hex</string>
+        </entry>
+      </elementAttributes>
+      <pos x="100" y="440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Counter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>8</int>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Const</elementName>
+      <elementAttributes/>
+      <pos x="-40" y="440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Const</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Value</string>
+          <long>0</long>
+        </entry>
+      </elementAttributes>
+      <pos x="-20" y="480"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>b</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>16</int>
+        </entry>
+      </elementAttributes>
+      <pos x="300" y="520"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="320" y="480"/>
+      <p2 x="380" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="80" y="480"/>
+      <p2 x="100" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="-20" y="480"/>
+      <p2 x="0" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="320" y="560"/>
+      <p2 x="360" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="360" y="560"/>
+      <p2 x="380" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="-20" y="420"/>
+      <p2 x="80" y="420"/>
+    </wire>
+    <wire>
+      <p1 x="440" y="520"/>
+      <p2 x="480" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="300" y="520"/>
+      <p2 x="380" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="60" y="440"/>
+      <p2 x="100" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="-40" y="440"/>
+      <p2 x="-20" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="-20" y="440"/>
+      <p2 x="0" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="-100" y="600"/>
+      <p2 x="360" y="600"/>
+    </wire>
+    <wire>
+      <p1 x="160" y="460"/>
+      <p2 x="320" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="-100" y="460"/>
+      <p2 x="0" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="80" y="420"/>
+      <p2 x="80" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="320" y="460"/>
+      <p2 x="320" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="-20" y="420"/>
+      <p2 x="-20" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="-100" y="460"/>
+      <p2 x="-100" y="600"/>
+    </wire>
+    <wire>
+      <p1 x="360" y="560"/>
+      <p2 x="360" y="600"/>
+    </wire>
+    <wire>
+      <p1 x="380" y="480"/>
+      <p2 x="380" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="380" y="540"/>
+      <p2 x="380" y="560"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>
