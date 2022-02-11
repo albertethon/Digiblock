@@ -8,24 +8,28 @@ import de.neemann.digiblock.core.element.Element;
 import de.neemann.digiblock.core.element.ElementAttributes;
 import de.neemann.digiblock.core.element.ElementTypeDescription;
 import de.neemann.digiblock.core.element.Keys;
+import de.neemann.digiblock.core.io.In;
 import de.neemann.digiblock.draw.elements.PinException;
+import de.neemann.digiblock.gui.components.terminal.Serial.Utils.ArrayUtils;
+import de.neemann.digiblock.gui.components.terminal.Serial.Utils.ByteUtils;
 import de.neemann.digiblock.gui.components.terminal.Terminal;
 import de.neemann.digiblock.gui.components.terminal.TerminalDialog;
 
 import javax.swing.*;
 import java.awt.*;
+import java.nio.charset.StandardCharsets;
 
 import static de.neemann.digiblock.core.element.PinInfo.input;
 
-public class SerialPort extends Node implements Element {
+public class Bus extends Node implements Element {
 
     /**
      * The serialport description
      */
     public static final ElementTypeDescription DESCRIPTION
-            = new ElementTypeDescription(SerialPort.class,
+            = new ElementTypeDescription(Bus.class,
             input("C").setClock(),
-            input("en"))
+            input("DI"))
             .addAttribute(Keys.ROTATE)
             .addAttribute(Keys.LABEL);
 
@@ -34,13 +38,13 @@ public class SerialPort extends Node implements Element {
     private SerialDialog serialDialog;
     private ObservableValue clock;
     private boolean lastClock;
-    private ObservableValue en;
-    private ObservableValue data;
+    private ObservableValue dataIn;
+    private ObservableValue dataOut;
 
-    public SerialPort(ElementAttributes attributes) {
+    public Bus(ElementAttributes attributes) {
         attr = attributes;
         label = attributes.getLabel();
-        data = new ObservableValue("D", 8)
+        dataOut = new ObservableValue("DO", 32)
                 .setToHighZ()
                 .setPinDescription(DESCRIPTION);
     }
@@ -48,29 +52,40 @@ public class SerialPort extends Node implements Element {
     @Override
     public void readInputs() throws NodeException {
         boolean clockVal = clock.getBool();
-        if (!lastClock && clockVal && en.getBool()) {
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new SerialDialog().setVisible(true);
-                }
-            });
+        if (!lastClock && clockVal) {
+            int value = (int) this.dataIn.getValue();
+            if (value != 0L && serialDialog != null) {
+                serialDialog.sendData(ByteUtils.hexStr2Byte(Integer.toHexString(value)));
+            }
         }
         lastClock = clockVal;
     }
 
     @Override
     public void writeOutputs() throws NodeException {
-
+        if (serialDialog != null) {
+            dataOut.setValue(serialDialog.getReadData());
+        } else {
+            dataOut.setValue(0L);
+        }
     }
 
     @Override
     public void setInputs(ObservableValues inputs) throws NodeException {
         clock = inputs.get(0).addObserverToValue(this).checkBits(1, this);
-        en = inputs.get(1).addObserverToValue(this).checkBits(1, this);
+        dataIn = inputs.get(1).addObserverToValue(this).checkBits(32, this);
     }
 
     @Override
     public ObservableValues getOutputs() throws PinException {
-        return ObservableValues.EMPTY_LIST;
+        return new ObservableValues(dataOut);
+    }
+    public void setSerial(SerialDialog serialDialog) {
+        this.serialDialog = serialDialog;
+    }
+    protected void finalize() throws Throwable {
+        if (serialDialog.isOpen()) {
+            serialDialog.close();
+        }
     }
 }

@@ -21,7 +21,6 @@ import de.neemann.digiblock.draw.library.ElementTypeDescriptionCustom;
 import de.neemann.digiblock.draw.library.ResolveGenerics;
 import de.neemann.digiblock.hdl.model2.clock.HDLClockIntegrator;
 import de.neemann.digiblock.hdl.model2.expression.*;
-import de.neemann.digiblock.plugin.lattice.EFB;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -184,7 +183,7 @@ public class HDLModel implements Iterable<HDLCircuit> {
                     node.addPort(new HDLPort(p.getName(), net, HDLPort.Direction.OUT, node.getBits(p.getName())));
                     break;
                 case both:
-                    if (v.equalsDescription(PinControl.DESCRIPTION) || v.equalsDescription(EFB.DESCRIPTION)) {
+                    if (v.equalsDescription(PinControl.DESCRIPTION)) {
                         if (c.getDepth() != 0)
                             throw new HDLException("PinControl component is allowed only in the top level circuit");
                         node.addPort(new HDLPort(p.getName(), net, HDLPort.Direction.INOUT, node.getBits(p.getName())));
