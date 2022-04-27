@@ -238,10 +238,19 @@ public class SerialDialog extends JFrame {
                     } else {
                         // 读取串口数据
                         data = SerialPortManager.readFromPort(mSerialport);
-                        readData = 0;
-                        for (int i = data.length - 1, y = 0; i >= 0; i--, y++) {
-                            int val = data[i] & 0xff;
-                            val <<= (y * 8);
+//                        readData = 0;
+//                        for (int i = data.length - 1, y = 0; i >= 0; i--, y++) {
+//                            int val = data[i] & 0xf;
+//                            val <<= (y * 4);
+//                            readData = readData | val;
+//                        }
+                        for (int i = 0; i < data.length; i++) {
+                            int val = 0;
+                            int pos = select((byte) (data[i] & 0xf0));
+                            int maskVal = mask(pos);
+                            if (pos == -1) continue;
+                            else val = (data[i] & 0xf) << (pos * 4);
+                            readData = readData & maskVal;
                             readData = readData | val;
                         }
                         // 以字符串的形式接收数据
@@ -261,6 +270,48 @@ public class SerialDialog extends JFrame {
                 }
             }
         });
+    }
+
+    private int select(byte val) {
+        if (val == 0) {
+            return 0;
+        } else if (val == 16) {
+            return 1;
+        } else if (val == 32) {
+            return 2;
+        } else if (val == 48) {
+            return 3;
+        } else if (val == 64) {
+            return 4;
+        } else if (val == 80) {
+            return 5;
+        } else if (val == 96) {
+            return 6;
+        } else if (val == 112) {
+            return 7;
+        }
+        return -1;
+    }
+
+    private int mask(int pos) {
+        if (pos == 0) {
+            return 0xfffffff0;
+        } else if (pos == 1) {
+            return 0xffffff0f;
+        } else if (pos == 2) {
+            return 0xfffff0ff;
+        } else if (pos == 3) {
+            return 0xffff0fff;
+        } else if (pos == 4) {
+            return 0xfff0ffff;
+        } else if (pos == 5) {
+            return 0xff0fffff;
+        } else if (pos == 6) {
+            return 0xf0ffffff;
+        } else if (pos == 7) {
+            return 0x0fffffff;
+        }
+        return 0xffffffff;
     }
 
     /**
@@ -301,7 +352,26 @@ public class SerialDialog extends JFrame {
             ShowUtils.warningMessage("请先打开串口！");
             return;
         }
-        SerialPortManager.sendToPort(mSerialport, data);
+//        byte[] ldata = new byte[8];
+//        ldata[0] = (byte) (0x00 | (data[0] & 0xf));
+//        ldata[1] = (byte) (0x10 | ((data[0] & 0xf0) >> 4));
+//        ldata[2] = (byte) (0x20 | (data[1] & 0xf));
+//        ldata[3] = (byte) (0x30 | ((data[1] & 0xf0) >> 4));
+//        ldata[4] = (byte) (0x40 | (data[2] & 0xf));
+//        ldata[5] = (byte) (0x50 | ((data[2] & 0xf0) >> 4));
+//        ldata[6] = (byte) (0x60 | (data[3] & 0xf));
+//        ldata[7] = (byte) (0x70 | ((data[3] & 0xf0) >> 4));
+        int len = data.length;
+        byte[] ldata = new byte[len * 2];
+        for (int i = len - 1, j = len * 2 - 1, k = 0; i >= 0; i--) {
+            ldata[j] = (byte) ((data[i] & 0xf) | k << 4);
+            j--;
+            k++;
+            ldata[j] = (byte) (((data[i] & 0xf0) >> 4) | k << 4);
+            k++;
+            j--;
+        }
+        SerialPortManager.sendToPort(mSerialport, ldata);
     }
     public int getReadData() {
         return readData;
@@ -350,10 +420,19 @@ public class SerialDialog extends JFrame {
                     } else {
                         // 读取串口数据
                         data = SerialPortManager.readFromPort(mSerialport);
-                        readData = 0;
-                        for (int i = data.length - 1, y = 0; i >= 0; i--, y++) {
-                            int val = data[i] & 0xff;
-                            val <<= (y * 8);
+//                        readData = 0;
+//                        for (int i = data.length - 1, y = 0; i >= 0; i--, y++) {
+//                            int val = data[i] & 0xf;
+//                            val <<= (y * 4);
+//                            readData = readData | val;
+//                        }
+                        for (int i = 0; i < data.length; i++) {
+                            int val = 0;
+                            int pos = select((byte) (data[i] & 0xf0));
+                            int maskVal = mask(pos);
+                            if (pos == -1) continue;
+                            else val = (data[i] & 0xf) << (pos * 4);
+                            readData = readData & maskVal;
                             readData = readData | val;
                         }
                         // 以字符串的形式接收数据

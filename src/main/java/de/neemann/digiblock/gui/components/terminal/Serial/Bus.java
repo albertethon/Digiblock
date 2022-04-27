@@ -54,8 +54,13 @@ public class Bus extends Node implements Element {
         boolean clockVal = clock.getBool();
         if (!lastClock && clockVal) {
             int value = (int) this.dataIn.getValue();
-            if (value != 0L && serialDialog != null) {
-                serialDialog.sendData(ByteUtils.hexStr2Byte(Integer.toHexString(value)));
+            String hexStr = Integer.toHexString(value);
+            int len = hexStr.length();
+            for (int i = 0; i < 32 - len; i++) {
+                hexStr = "0" + hexStr;
+            }
+            if (serialDialog != null) {
+                serialDialog.sendData(ByteUtils.hexStr2Byte(hexStr));
             }
         }
         lastClock = clockVal;
