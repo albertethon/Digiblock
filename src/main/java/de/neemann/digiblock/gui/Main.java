@@ -1518,6 +1518,16 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
             @Override
             public void enter() {
                 super.enter();
+                if (!model.findNode(Bus.class).isEmpty()) {
+                    for (Bus s: model.findNode(Bus.class)) {
+                        SerialDialog serialDialog = s.getSerial();
+                        if (serialDialog != null) {
+                            if (serialDialog.isOpen()) {
+                                serialDialog.close();
+                            }
+                        }
+                    }
+                }
                 clearModelDescription();
                 circuitComponent.setModeAndReset(false, SyncAccess.NOSYNC);
                 doMicroStep.setEnabled(false);
@@ -1657,6 +1667,8 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
 
             handleKeyboardComponent(updateEvent);
 
+            busComponent();
+
             doMicroStep.setEnabled(false);
             if (!realTimeClockRunning && model.isRunToBreakAllowed()) {
                 if (updateEvent == ModelEvent.MICROSTEP)
@@ -1734,6 +1746,12 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
         }
         for (Bus s: model.findNode(Bus.class)) {
             windowPosManager.register("bus", new SerialDialog(s));
+        }
+    }
+
+    private void busComponent() {
+        for (Bus s: model.findNode(Bus.class)) {
+            windowPosManager.register("bus_" + s.getLabel(), new SerialDialog(s));
         }
     }
 

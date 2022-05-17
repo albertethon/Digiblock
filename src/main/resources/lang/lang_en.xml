@@ -250,7 +250,11 @@
     <string name="elem_RotEncoder_tt">Rotary knob with rotary encoder. Used to detect rotational movements.</string>
     <string name="elem_RotEncoder_pin_A">encoder signal A</string>
     <string name="elem_RotEncoder_pin_B">encoder signal B</string>
-
+    <string name="elem_Bus">Bus</string>
+    <string name="elem_Bus_tt">Bidirectional mapping 32 bit data between Digiblock and hardware</string>
+    <string name="elem_Bus_pin_C">Clock pin to store the status of  DI and DO on a rising edge</string>
+    <string name="elem_Bus_pin_DI">Hardware inputs of 32 bits, which Digiblock ouput and be sended to the inputs of hardware</string>
+    <string name="elem_Bus_pin_DO">Hardware output of 32 bits, which hardware generates(eg. key matrix) and be sended to the inputs of Digiblock</string> 
     <string name="elem_Keyboard">Keyboard</string>
     <string name="elem_Keyboard_tt">A keyboard that can be used to enter text.
         This component buffers the input, which can then be read out.
@@ -1533,6 +1537,7 @@
     <string name="menu_rotate">Rotate</string>
     <string name="menu_sim">Simulation</string>
     <string name="menu_run">Start of Simulation</string>
+
     <string name="menu_run_tt">Starts the simulation of the circuit.</string>
     <string name="menu_save">Save</string>
     <string name="menu_saveAs">Save As</string>

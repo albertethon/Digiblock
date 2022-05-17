@@ -53,14 +53,16 @@ public class Bus extends Node implements Element {
     public void readInputs() throws NodeException {
         boolean clockVal = clock.getBool();
         if (!lastClock && clockVal) {
-            int value = (int) this.dataIn.getValue();
-            String hexStr = Integer.toHexString(value);
-            int len = hexStr.length();
-            for (int i = 0; i < 32 - len; i++) {
-                hexStr = "0" + hexStr;
-            }
             if (serialDialog != null) {
-                serialDialog.sendData(ByteUtils.hexStr2Byte(hexStr));
+                int value = (int) this.dataIn.getValue();
+                String hexStr = Integer.toHexString(value);
+                int len = hexStr.length();
+                for (int i = 0; i < 32 - len; i++) {
+                    hexStr = "0" + hexStr;
+                }
+                if (serialDialog.isOpen()) {
+                    serialDialog.sendData(ByteUtils.hexStr2Byte(hexStr));
+                }
             }
         }
         lastClock = clockVal;
@@ -88,9 +90,20 @@ public class Bus extends Node implements Element {
     public void setSerial(SerialDialog serialDialog) {
         this.serialDialog = serialDialog;
     }
+
+    public SerialDialog getSerial() {
+        return this.serialDialog;
+    }
+
     protected void finalize() throws Throwable {
         if (serialDialog.isOpen()) {
             serialDialog.close();
         }
+    }
+    /**
+     * @return the bus label
+     */
+    public String getLabel() {
+        return label;
     }
 }

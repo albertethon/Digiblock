@@ -5,6 +5,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 import javax.swing.*;
@@ -13,8 +15,11 @@ import javax.swing.event.PopupMenuListener;
 
 import de.neemann.digiblock.gui.components.terminal.Serial.Utils.ByteUtils;
 import de.neemann.digiblock.gui.components.terminal.Serial.Utils.ShowUtils;
-import gnu.io.PortInUseException;
-import gnu.io.SerialPort;
+import purejavacomm.PortInUseException;
+import purejavacomm.SerialPort;
+import purejavacomm.SerialPortEvent;
+import purejavacomm.SerialPortEventListener;
+
 
 /**
  * 主界面
@@ -40,11 +45,11 @@ public class SerialDialog extends JFrame {
     private JComboBox mCommChoice = new JComboBox();
     private JComboBox mBaudrateChoice = new JComboBox();
     private ButtonGroup mDataChoice = new ButtonGroup();
-    private JRadioButton mDataASCIIChoice = new JRadioButton("ASCII", true);
-    private JRadioButton mDataHexChoice = new JRadioButton("Hex");
+    private JRadioButton mDataASCIIChoice = new JRadioButton("ASCII");
+    private JRadioButton mDataHexChoice = new JRadioButton("Hex", true);
 
     // 操作面板
-    private JButton mSerialPortOperate = new JButton("打开串口");
+    private JButton mSerialPortOperate;
 
     // 串口列表
     private List<String> mCommList = null;
@@ -52,6 +57,8 @@ public class SerialDialog extends JFrame {
     private SerialPort mSerialport;
 
     private int readData;
+
+    private SerialPortEventListener mListener;
 
     public SerialDialog(de.neemann.digiblock.gui.components.terminal.Serial.Bus serial) {
         initView();
@@ -109,18 +116,15 @@ public class SerialDialog extends JFrame {
         mBaudrateChoice.setFocusable(false);
         mBaudrateChoice.setBounds(60, 60, 100, 20);
         mSerialPortPanel.add(mBaudrateChoice);
-
-        //mDataASCIIChoice.setBounds(20, 95, 55, 20);
-        //mDataHexChoice.setBounds(95, 95, 55, 20);
-        //mDataChoice.add(mDataASCIIChoice);
-        //mDataChoice.add(mDataHexChoice);
-       // mSerialPortPanel.add(mDataASCIIChoice);
-        //mSerialPortPanel.add(mDataHexChoice);
-
         // 操作
 
 
 
+        if (mSerialport != null) {
+            mSerialPortOperate = new JButton("关闭串口");
+        } else {
+            mSerialPortOperate = new JButton("打开串口");
+        }
         mSerialPortOperate.setFocusable(false);
         mSerialPortOperate.setBounds(20, 95, 120, 20);
         mSerialPortPanel.add(mSerialPortOperate);
@@ -131,7 +135,7 @@ public class SerialDialog extends JFrame {
      * 初始化数据
      */
     private void initData() {
-        mCommList = SerialPortManager.findPorts();
+        mCommList = SerialTool.findPorts();
         // 检查是否有可用串口，有则加入选项中
         if (mCommList == null || mCommList.size() < 1) {
             ShowUtils.warningMessage("没有搜索到有效串口！");
@@ -157,7 +161,7 @@ public class SerialDialog extends JFrame {
 
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-                mCommList = SerialPortManager.findPorts();
+                mCommList = SerialTool.findPorts();
                 // 检查是否有可用串口，有则加入选项中
                 if (mCommList == null || mCommList.size() < 1) {
                     ShowUtils.warningMessage("没有搜索到有效串口！");
@@ -195,7 +199,17 @@ public class SerialDialog extends JFrame {
             }
         });
 
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                if (isOpen()) {
+                    close();
+                }
             }
+        });
+
+    }
 
     /**
      * 打开串口
@@ -216,7 +230,7 @@ public class SerialDialog extends JFrame {
             ShowUtils.warningMessage("没有搜索到有效串口！");
         } else {
             try {
-                mSerialport = SerialPortManager.openPort(commName, baudrate);
+                mSerialport = SerialTool.openPort(commName, baudrate);
                 if (mSerialport != null) {
                     mDataView.setText("串口已打开" + "\r\n");
                     mSerialPortOperate.setText("关闭串口");
@@ -227,23 +241,19 @@ public class SerialDialog extends JFrame {
         }
 
         // 添加串口监听
-        SerialPortManager.addListener(mSerialport, new SerialPortManager.DataAvailableListener() {
+        SerialTool.addListener(mSerialport, new SerialListener());
+    }
 
-            @Override
-            public void dataAvailable() {
+    private class SerialListener implements SerialPortEventListener {
+
+        public void serialEvent(SerialPortEvent serialPortEvent) {
+            if (serialPortEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
                 byte[] data = null;
                 try {
                     if (mSerialport == null) {
                         ShowUtils.errorMessage("串口对象为空，监听失败！");
                     } else {
-                        // 读取串口数据
-                        data = SerialPortManager.readFromPort(mSerialport);
-//                        readData = 0;
-//                        for (int i = data.length - 1, y = 0; i >= 0; i--, y++) {
-//                            int val = data[i] & 0xf;
-//                            val <<= (y * 4);
-//                            readData = readData | val;
-//                        }
+                        data = SerialTool.readFromPort(mSerialport);
                         for (int i = 0; i < data.length; i++) {
                             int val = 0;
                             int pos = select((byte) (data[i] & 0xf0));
@@ -265,11 +275,10 @@ public class SerialDialog extends JFrame {
                     }
                 } catch (Exception e) {
                     ShowUtils.errorMessage(e.toString());
-                    // 发生读取错误时显示错误信息后退出系统
                     System.exit(0);
                 }
             }
-        });
+        }
     }
 
     private int select(byte val) {
@@ -321,7 +330,7 @@ public class SerialDialog extends JFrame {
      *            点击事件
      */
     private void closeSerialPort(java.awt.event.ActionEvent evt) {
-        SerialPortManager.closePort(mSerialport);
+        SerialTool.closePort(mSerialport);
         mDataView.setText("串口已关闭" + "\r\n");
         mSerialPortOperate.setText("打开串口");
         mSerialport = null;
@@ -345,8 +354,10 @@ public class SerialDialog extends JFrame {
             ShowUtils.warningMessage("请输入要发送的数据！");
             return;
         }
-        SerialPortManager.sendToPort(mSerialport, ByteUtils.hexStr2Byte(data));
+        SerialTool.sendToPort(mSerialport, ByteUtils.hexStr2Byte(data));
     }
+
+
     public void sendData(byte[] data) {
         if (mSerialport == null) {
             ShowUtils.warningMessage("请先打开串口！");
@@ -371,97 +382,24 @@ public class SerialDialog extends JFrame {
             k++;
             j--;
         }
-        SerialPortManager.sendToPort(mSerialport, ldata);
+        SerialTool.sendToPort(mSerialport, ldata);
     }
+
+
     public int getReadData() {
         return readData;
     }
+
+
     public boolean isOpen() {
         return mSerialport != null;
     }
+
+
     public void close() {
-        SerialPortManager.closePort(mSerialport);
-        mDataView.setText("串口已关闭\r\n");
+        SerialTool.closePort(mSerialport);
+        mSerialPortOperate.setText("打开串口");
         mSerialport = null;
     }
-
-    public void openSerialPort() {
-        // 获取串口名称
-        String commName = (String) mCommChoice.getSelectedItem();
-        // 获取波特率，默认为9600
-        int baudrate = 9600;
-        String bps = (String) mBaudrateChoice.getSelectedItem();
-        baudrate = Integer.parseInt(bps);
-
-        // 检查串口名称是否获取正确
-        if (commName == null || commName.equals("")) {
-            ShowUtils.warningMessage("没有搜索到有效串口！");
-        } else {
-            try {
-                mSerialport = SerialPortManager.openPort(commName, baudrate);
-                if (mSerialport != null) {
-                    mDataView.setText("串口已打开" + "\r\n");
-                    mSerialPortOperate.setText("关闭串口");
-                }
-            } catch (PortInUseException e) {
-                ShowUtils.warningMessage("串口已被占用！");
-            }
-        }
-
-        // 添加串口监听
-        SerialPortManager.addListener(mSerialport, new SerialPortManager.DataAvailableListener() {
-
-            @Override
-            public void dataAvailable() {
-                byte[] data = null;
-                try {
-                    if (mSerialport == null) {
-                        ShowUtils.errorMessage("串口对象为空，监听失败！");
-                    } else {
-                        // 读取串口数据
-                        data = SerialPortManager.readFromPort(mSerialport);
-//                        readData = 0;
-//                        for (int i = data.length - 1, y = 0; i >= 0; i--, y++) {
-//                            int val = data[i] & 0xf;
-//                            val <<= (y * 4);
-//                            readData = readData | val;
-//                        }
-                        for (int i = 0; i < data.length; i++) {
-                            int val = 0;
-                            int pos = select((byte) (data[i] & 0xf0));
-                            int maskVal = mask(pos);
-                            if (pos == -1) continue;
-                            else val = (data[i] & 0xf) << (pos * 4);
-                            readData = readData & maskVal;
-                            readData = readData | val;
-                        }
-                        // 以字符串的形式接收数据
-                        if (mDataASCIIChoice.isSelected()) {
-                            mDataView.append(new String(data) + "\r\n");
-                        }
-
-                        // 以十六进制的形式接收数据
-                        if (mDataHexChoice.isSelected()) {
-                            mDataView.append(ByteUtils.byteArrayToHexString(data) + "\r\n");
-                        }
-                    }
-                } catch (Exception e) {
-                    ShowUtils.errorMessage(e.toString());
-                    // 发生读取错误时显示错误信息后退出系统
-                    System.exit(0);
-                }
-            }
-        });
-    }
-
-
-
-//    public static void main(String args[]) {
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new SerialDialog().setVisible(true);
-//            }
-//        });
-//    }
 }
 
