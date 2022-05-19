@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fsm>
+  <states>
+    <state>
+      <values></values>
+      <position x="120.0" y="60.0"/>
+      <number>0</number>
+      <name>init</name>
+      <radius>70</radius>
+      <isInitial>true</isInitial>
+    </state>
+    <state>
+      <values>G=1,T=01</values>
+      <position x="300.0" y="60.0"/>
+      <number>1</number>
+      <name>GREEN</name>
+      <radius>70</radius>
+      <isInitial>false</isInitial>
+    </state>
+    <state>
+      <values>G=1, R=1,T=10</values>
+      <position x="480.0" y="300.0"/>
+      <number>2</number>
+      <name>YELLOW</name>
+      <radius>70</radius>
+      <isInitial>false</isInitial>
+    </state>
+    <state>
+      <values>R=1,T=11</values>
+      <position x="120.0" y="360.0"/>
+      <number>3</number>
+      <name>RED</name>
+      <radius>70</radius>
+      <isInitial>false</isInitial>
+    </state>
+  </states>
+  <transitions>
+    <transition>
+      <values></values>
+      <position x="210.0" y="36.0"/>
+      <fromState reference="../../../states/state"/>
+      <toState reference="../../../states/state[2]"/>
+      <condition></condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="408.66684" y="165.99986"/>
+      <fromState reference="../../../states/state[2]"/>
+      <toState reference="../../../states/state[3]"/>
+      <condition></condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="306.02704" y="366.16217"/>
+      <fromState reference="../../../states/state[3]"/>
+      <toState reference="../../../states/state[4]"/>
+      <condition></condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="170.88235" y="186.52942"/>
+      <fromState reference="../../../states/state[4]"/>
+      <toState reference="../../../states/state[2]"/>
+      <condition></condition>
+    </transition>
+  </transitions>
+</fsm>

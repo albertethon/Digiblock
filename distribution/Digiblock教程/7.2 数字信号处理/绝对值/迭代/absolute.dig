@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes>
+    <entry>
+      <string>isGeneric</string>
+      <boolean>true</boolean>
+    </entry>
+  </attributes>
+  <visualElements>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>P</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>2</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=int(args.dataBits);</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1060" y="220"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Q</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>2</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits=int(args.dataBits);</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1240" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>absolute-final-inc.dig</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>if (isPresent(args)) {
+  if (args.dataBits&gt;2) {
+    setCircuit(&quot;absolute-inc.dig&quot;);
+  } else {
+    
+     export dataBits := args.dataBits+1;
+ } 
+} 
+   else {
+  export dataBits:=3;
+           }</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1140" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Const</elementName>
+      <elementAttributes/>
+      <pos x="1100" y="200"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="1100" y="200"/>
+      <p2 x="1140" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="200"/>
+      <p2 x="1240" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="1060" y="220"/>
+      <p2 x="1140" y="220"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

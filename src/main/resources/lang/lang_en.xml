@@ -254,7 +254,7 @@
     <string name="elem_Bus_tt">Bidirectional mapping 32 bit data between Digiblock and hardware</string>
     <string name="elem_Bus_pin_C">Clock pin to store the status of  DI and DO on a rising edge</string>
     <string name="elem_Bus_pin_DI">Hardware inputs of 32 bits, which Digiblock ouput and be sended to the inputs of hardware</string>
-    <string name="elem_Bus_pin_DO">Hardware output of 32 bits, which hardware generates(eg. key matrix) and be sended to the inputs of Digiblock</string> 
+    <string name="elem_Bus_pin_DO">Hardware output of 32 bits, which hardware generates(eg. key matrix) and be sended to the inputs of Digiblock</string>
     <string name="elem_Keyboard">Keyboard</string>
     <string name="elem_Keyboard_tt">A keyboard that can be used to enter text.
         This component buffers the input, which can then be read out.
@@ -1477,6 +1477,8 @@
     <string name="menu_analyse_tt">Analyses the actual circuit</string>
     <string name="menu_assembly">Assembly</string>
     <string name="menu_RARS_tt">RISC-V assembly and run-time simulator</string>
+    <string name="menu_MARS_tt">MIPS assembly and run-time simulator</string>
+    <string name="menu_ARMv8_tt">ARMv8 assembly</string>
     <string name="menu_cut">Cut</string>
     <string name="menu_copy">Copy</string>
     <string name="menu_custom">Custom</string>

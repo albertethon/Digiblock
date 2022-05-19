@@ -154,6 +154,8 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
     private File baseFilename;
     private File filename;
     private File rarsTempFile;
+    private File armv8TempFile;
+    private File marsTempFile;
     private File gtkwaveTempFile;
     private FileHistory fileHistory;
     private boolean modifiedPrefixVisible = false;
@@ -209,7 +211,29 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
             e.printStackTrace();
         }
 
+        try {
+            armv8TempFile = File.createTempFile("armv8", ".jar");
+            armv8TempFile.deleteOnExit();
+            try (FileOutputStream out1 = new FileOutputStream(armv8TempFile);
+                 InputStream in1 = ClassLoader.getSystemResourceAsStream("ARMv8_Assembler.jar")) {
+                if (in1 != null)
+                    IOUtils.copy(in1, out1);
+            }
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
 
+        try {
+            marsTempFile = File.createTempFile("mars", ".jar");
+            marsTempFile.deleteOnExit();
+            try (FileOutputStream out2 = new FileOutputStream(marsTempFile);
+                 InputStream in2 = ClassLoader.getSystemResourceAsStream("Mars4_5.jar")) {
+                if (in2 != null)
+                    IOUtils.copy(in2, out2);
+            }
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
 
         circuitComponent = new CircuitComponent(this, library, shapeFactory);
         circuitComponent.addListener(this);
@@ -1388,6 +1412,7 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
                     String cmd = "java -jar " + rarsTempFile.getAbsolutePath();
+                    System.out.println(cmd);
                     Runtime.getRuntime().exec(cmd);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -1397,6 +1422,37 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
                 .setToolTip(Lang.get("menu_RARS_tt"))
                 .createJMenuItem());
 
+        assembly.add(new ToolTipAction("MARS") {
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try {
+                    String cmd = "java -jar " + marsTempFile.getAbsolutePath();
+                    System.out.println(cmd);
+                    Runtime.getRuntime().exec(cmd);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+                .setToolTip(Lang.get("menu_MARS_tt"))
+                .createJMenuItem());
+
+        assembly.add(new ToolTipAction("ARMv8") {
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try {
+                    String cmd = "java -jar " + armv8TempFile.getAbsolutePath();
+                    System.out.println(cmd);
+                    Runtime.getRuntime().exec(cmd);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+                .setToolTip(Lang.get("menu_ARMv8_tt"))
+                .createJMenuItem());
     }
 
     /**

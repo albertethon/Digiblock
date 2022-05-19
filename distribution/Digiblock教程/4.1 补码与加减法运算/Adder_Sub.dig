@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>XOr</elementName>
+      <elementAttributes/>
+      <pos x="-340" y="-360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>And</elementName>
+      <elementAttributes/>
+      <pos x="-340" y="-280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>A</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-400" y="-360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>B</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-400" y="-240"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>S</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-220" y="-340"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>C</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-220" y="-260"/>
+    </visualElement>
+    <visualElement>
+      <elementName>XOr</elementName>
+      <elementAttributes/>
+      <pos x="-280" y="-60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>And</elementName>
+      <elementAttributes/>
+      <pos x="-280" y="20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>$a$</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-400" y="-60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>$b$</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-400" y="60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>$s$</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-180" y="-40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>bo</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-180" y="40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Not</elementName>
+      <elementAttributes/>
+      <pos x="-360" y="20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>XOr</elementName>
+      <elementAttributes/>
+      <pos x="60" y="-320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>And</elementName>
+      <elementAttributes/>
+      <pos x="60" y="-400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>And</elementName>
+      <elementAttributes/>
+      <pos x="200" y="-300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>XOr</elementName>
+      <elementAttributes/>
+      <pos x="200" y="-220"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>first bit to add
+{{de Erstes zu addierendes Bit.}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>A_i</string>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="-400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Or</elementName>
+      <elementAttributes/>
+      <pos x="320" y="-380"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>second bit to add
+{{de Zweites zu addierendes Bit.}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>B_i</string>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="-280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>carry in
+{{de Übertragsbit der Vorgängerschaltung.}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>C_{i-1}</string>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="-180"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>carry bit
+{{de Übertragsbit}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>C_i</string>
+        </entry>
+      </elementAttributes>
+      <pos x="400" y="-360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>sum {{de Summe}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>S_i</string>
+        </entry>
+      </elementAttributes>
+      <pos x="400" y="-200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>BO_{j-1}</string>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="120"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Or</elementName>
+      <elementAttributes/>
+      <pos x="460" y="60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>XOr</elementName>
+      <elementAttributes/>
+      <pos x="120" y="-60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>And</elementName>
+      <elementAttributes/>
+      <pos x="120" y="20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>A_j</string>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="-60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>B_j</string>
+        </entry>
+      </elementAttributes>
+      <pos x="0" y="60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Not</elementName>
+      <elementAttributes/>
+      <pos x="40" y="20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>XOr</elementName>
+      <elementAttributes/>
+      <pos x="340" y="-40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>And</elementName>
+      <elementAttributes/>
+      <pos x="340" y="40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>S_j</string>
+        </entry>
+      </elementAttributes>
+      <pos x="440" y="-20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>BO_j</string>
+        </entry>
+      </elementAttributes>
+      <pos x="540" y="80"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Not</elementName>
+      <elementAttributes/>
+      <pos x="260" y="40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Half Adder</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-380" y="-200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Full Adder</string>
+        </entry>
+      </elementAttributes>
+      <pos x="80" y="-140"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Half Sub</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-380" y="100"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Full Sub</string>
+        </entry>
+      </elementAttributes>
+      <pos x="160" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Full Adder</string>
+        </entry>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>  A_i B_i C_{i-1} C_i S_i
+
+loop (A,2)
+  loop (B,2)
+    loop (Ci,2)
+ (A) (B) (Ci)   bits(2, A+B+Ci)
+    end loop
+  end loop
+end loop
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="-380" y="220"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Full Sub</string>
+        </entry>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>A_j B_j BO_{j-1}  BO_j S_j
+ 0   0   0        0   0
+ 0   0   1        1   1
+ 0   1   0        1   1
+ 0   1   1        1   0
+ 1   0   0        0   1
+ 1   0   1        0   0
+ 1   1   0        0   0
+ 1   1   1        1   1
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="500" y="180"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="20" y="-400"/>
+      <p2 x="40" y="-320"/>
+    </wire>
+    <wire>
+      <p1 x="40" y="-360"/>
+      <p2 x="20" y="-280"/>
+    </wire>
+    <wire>
+      <p1 x="160" y="-300"/>
+      <p2 x="180" y="-220"/>
+    </wire>
+    <wire>
+      <p1 x="180" y="-260"/>
+      <p2 x="160" y="-180"/>
+    </wire>
+    <wire>
+      <p1 x="320" y="0"/>
+      <p2 x="340" y="0"/>
+    </wire>
+    <wire>
+      <p1 x="-280" y="-260"/>
+      <p2 x="-220" y="-260"/>
+    </wire>
+    <wire>
+      <p1 x="180" y="-260"/>
+      <p2 x="200" y="-260"/>
+    </wire>
+    <wire>
+      <p1 x="200" y="100"/>
+      <p2 x="460" y="100"/>
+    </wire>
+    <wire>
+      <p1 x="-220" y="-40"/>
+      <p2 x="-180" y="-40"/>
+    </wire>
+    <wire>
+      <p1 x="180" y="-40"/>
+      <p2 x="240" y="-40"/>
+    </wire>
+    <wire>
+      <p1 x="240" y="-40"/>
+      <p2 x="340" y="-40"/>
+    </wire>
+    <wire>
+      <p1 x="260" y="-200"/>
+      <p2 x="400" y="-200"/>
+    </wire>
+    <wire>
+      <p1 x="40" y="-360"/>
+      <p2 x="60" y="-360"/>
+    </wire>
+    <wire>
+      <p1 x="380" y="-360"/>
+      <p2 x="400" y="-360"/>
+    </wire>
+    <wire>
+      <p1 x="-400" y="-360"/>
+      <p2 x="-380" y="-360"/>
+    </wire>
+    <wire>
+      <p1 x="-380" y="-360"/>
+      <p2 x="-340" y="-360"/>
+    </wire>
+    <wire>
+      <p1 x="300" y="40"/>
+      <p2 x="340" y="40"/>
+    </wire>
+    <wire>
+      <p1 x="240" y="40"/>
+      <p2 x="260" y="40"/>
+    </wire>
+    <wire>
+      <p1 x="180" y="40"/>
+      <p2 x="200" y="40"/>
+    </wire>
+    <wire>
+      <p1 x="-220" y="40"/>
+      <p2 x="-180" y="40"/>
+    </wire>
+    <wire>
+      <p1 x="120" y="-300"/>
+      <p2 x="160" y="-300"/>
+    </wire>
+    <wire>
+      <p1 x="160" y="-300"/>
+      <p2 x="200" y="-300"/>
+    </wire>
+    <wire>
+      <p1 x="-400" y="-240"/>
+      <p2 x="-360" y="-240"/>
+    </wire>
+    <wire>
+      <p1 x="-360" y="-240"/>
+      <p2 x="-340" y="-240"/>
+    </wire>
+    <wire>
+      <p1 x="0" y="-400"/>
+      <p2 x="20" y="-400"/>
+    </wire>
+    <wire>
+      <p1 x="20" y="-400"/>
+      <p2 x="60" y="-400"/>
+    </wire>
+    <wire>
+      <p1 x="520" y="80"/>
+      <p2 x="540" y="80"/>
+    </wire>
+    <wire>
+      <p1 x="240" y="80"/>
+      <p2 x="320" y="80"/>
+    </wire>
+    <wire>
+      <p1 x="320" y="80"/>
+      <p2 x="340" y="80"/>
+    </wire>
+    <wire>
+      <p1 x="280" y="-340"/>
+      <p2 x="320" y="-340"/>
+    </wire>
+    <wire>
+      <p1 x="-280" y="-340"/>
+      <p2 x="-220" y="-340"/>
+    </wire>
+    <wire>
+      <p1 x="0" y="-180"/>
+      <p2 x="160" y="-180"/>
+    </wire>
+    <wire>
+      <p1 x="160" y="-180"/>
+      <p2 x="200" y="-180"/>
+    </wire>
+    <wire>
+      <p1 x="100" y="-20"/>
+      <p2 x="120" y="-20"/>
+    </wire>
+    <wire>
+      <p1 x="400" y="-20"/>
+      <p2 x="440" y="-20"/>
+    </wire>
+    <wire>
+      <p1 x="-300" y="-20"/>
+      <p2 x="-280" y="-20"/>
+    </wire>
+    <wire>
+      <p1 x="-320" y="20"/>
+      <p2 x="-280" y="20"/>
+    </wire>
+    <wire>
+      <p1 x="-380" y="20"/>
+      <p2 x="-360" y="20"/>
+    </wire>
+    <wire>
+      <p1 x="80" y="20"/>
+      <p2 x="120" y="20"/>
+    </wire>
+    <wire>
+      <p1 x="20" y="20"/>
+      <p2 x="40" y="20"/>
+    </wire>
+    <wire>
+      <p1 x="0" y="-280"/>
+      <p2 x="20" y="-280"/>
+    </wire>
+    <wire>
+      <p1 x="260" y="-280"/>
+      <p2 x="280" y="-280"/>
+    </wire>
+    <wire>
+      <p1 x="-380" y="-280"/>
+      <p2 x="-340" y="-280"/>
+    </wire>
+    <wire>
+      <p1 x="20" y="-280"/>
+      <p2 x="60" y="-280"/>
+    </wire>
+    <wire>
+      <p1 x="0" y="120"/>
+      <p2 x="240" y="120"/>
+    </wire>
+    <wire>
+      <p1 x="120" y="-380"/>
+      <p2 x="320" y="-380"/>
+    </wire>
+    <wire>
+      <p1 x="180" y="-220"/>
+      <p2 x="200" y="-220"/>
+    </wire>
+    <wire>
+      <p1 x="0" y="-60"/>
+      <p2 x="20" y="-60"/>
+    </wire>
+    <wire>
+      <p1 x="-400" y="-60"/>
+      <p2 x="-380" y="-60"/>
+    </wire>
+    <wire>
+      <p1 x="20" y="-60"/>
+      <p2 x="120" y="-60"/>
+    </wire>
+    <wire>
+      <p1 x="-380" y="-60"/>
+      <p2 x="-280" y="-60"/>
+    </wire>
+    <wire>
+      <p1 x="-400" y="60"/>
+      <p2 x="-300" y="60"/>
+    </wire>
+    <wire>
+      <p1 x="0" y="60"/>
+      <p2 x="100" y="60"/>
+    </wire>
+    <wire>
+      <p1 x="400" y="60"/>
+      <p2 x="460" y="60"/>
+    </wire>
+    <wire>
+      <p1 x="-300" y="60"/>
+      <p2 x="-280" y="60"/>
+    </wire>
+    <wire>
+      <p1 x="100" y="60"/>
+      <p2 x="120" y="60"/>
+    </wire>
+    <wire>
+      <p1 x="-360" y="-320"/>
+      <p2 x="-340" y="-320"/>
+    </wire>
+    <wire>
+      <p1 x="40" y="-320"/>
+      <p2 x="60" y="-320"/>
+    </wire>
+    <wire>
+      <p1 x="240" y="-40"/>
+      <p2 x="240" y="40"/>
+    </wire>
+    <wire>
+      <p1 x="240" y="80"/>
+      <p2 x="240" y="120"/>
+    </wire>
+    <wire>
+      <p1 x="320" y="0"/>
+      <p2 x="320" y="80"/>
+    </wire>
+    <wire>
+      <p1 x="20" y="-60"/>
+      <p2 x="20" y="20"/>
+    </wire>
+    <wire>
+      <p1 x="100" y="-20"/>
+      <p2 x="100" y="60"/>
+    </wire>
+    <wire>
+      <p1 x="-360" y="-320"/>
+      <p2 x="-360" y="-240"/>
+    </wire>
+    <wire>
+      <p1 x="280" y="-340"/>
+      <p2 x="280" y="-280"/>
+    </wire>
+    <wire>
+      <p1 x="200" y="40"/>
+      <p2 x="200" y="100"/>
+    </wire>
+    <wire>
+      <p1 x="-300" y="-20"/>
+      <p2 x="-300" y="60"/>
+    </wire>
+    <wire>
+      <p1 x="-380" y="-60"/>
+      <p2 x="-380" y="20"/>
+    </wire>
+    <wire>
+      <p1 x="-380" y="-360"/>
+      <p2 x="-380" y="-280"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

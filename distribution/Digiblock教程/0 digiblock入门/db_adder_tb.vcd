@@ -1,0 +1,35 @@
+$date
+	Fri Jun 04 02:00:17 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module adder_tb $end
+$var wire 1 ! S $end
+$var wire 1 " C_i $end
+$var reg 1 # A $end
+$var reg 1 $ B $end
+$var reg 1 % \C_{i-1} $end
+$scope module adder_tb0 $end
+$var wire 1 # A $end
+$var wire 1 $ B $end
+$var wire 1 " C_i $end
+$var wire 1 % \C_{i-1} $end
+$var wire 1 ! S $end
+$var wire 1 & s0 $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+1&
+1%
+0$
+1#
+1"
+0!
+$end
+#100000000

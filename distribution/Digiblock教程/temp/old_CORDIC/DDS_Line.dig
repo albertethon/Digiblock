@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>Line_sin_0_90.dig</elementName>
+      <elementAttributes>
+        <entry>
+          <string>shapeType</string>
+          <shapeType>SIMPLE</shapeType>
+        </entry>
+      </elementAttributes>
+      <pos x="300" y="100"/>
+    </visualElement>
+    <visualElement>
+      <elementName>DDS_without_ValueTable.dig</elementName>
+      <elementAttributes/>
+      <pos x="400" y="260"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>clk</string>
+        </entry>
+      </elementAttributes>
+      <pos x="140" y="100"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>RESET</string>
+        </entry>
+      </elementAttributes>
+      <pos x="140" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>SET</string>
+        </entry>
+      </elementAttributes>
+      <pos x="140" y="220"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>step_in</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>8</int>
+        </entry>
+      </elementAttributes>
+      <pos x="140" y="320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>value</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>8</int>
+        </entry>
+      </elementAttributes>
+      <pos x="540" y="280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>zero_address</string>
+        </entry>
+      </elementAttributes>
+      <pos x="540" y="340"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>clk	RESET	SET	step_in		zero_address	value
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000
+0	1	0	0b00000001	0		0b0000000
+1	1	0	0b00000001	0		0b0000000</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="80" y="360"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="140" y="160"/>
+      <p2 x="240" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="240" y="160"/>
+      <p2 x="260" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="140" y="320"/>
+      <p2 x="400" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="140" y="100"/>
+      <p2 x="220" y="100"/>
+    </wire>
+    <wire>
+      <p1 x="280" y="100"/>
+      <p2 x="300" y="100"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="260"/>
+      <p2 x="400" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="460" y="260"/>
+      <p2 x="520" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="380" y="340"/>
+      <p2 x="400" y="340"/>
+    </wire>
+    <wire>
+      <p1 x="480" y="340"/>
+      <p2 x="540" y="340"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="120"/>
+      <p2 x="300" y="120"/>
+    </wire>
+    <wire>
+      <p1 x="360" y="120"/>
+      <p2 x="380" y="120"/>
+    </wire>
+    <wire>
+      <p1 x="240" y="280"/>
+      <p2 x="400" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="460" y="280"/>
+      <p2 x="540" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="260" y="140"/>
+      <p2 x="300" y="140"/>
+    </wire>
+    <wire>
+      <p1 x="140" y="220"/>
+      <p2 x="160" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="160" y="300"/>
+      <p2 x="400" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="460" y="300"/>
+      <p2 x="480" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="280" y="60"/>
+      <p2 x="520" y="60"/>
+    </wire>
+    <wire>
+      <p1 x="160" y="220"/>
+      <p2 x="160" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="240" y="160"/>
+      <p2 x="240" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="480" y="300"/>
+      <p2 x="480" y="340"/>
+    </wire>
+    <wire>
+      <p1 x="260" y="140"/>
+      <p2 x="260" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="520" y="60"/>
+      <p2 x="520" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="280" y="60"/>
+      <p2 x="280" y="100"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="100"/>
+      <p2 x="220" y="120"/>
+    </wire>
+    <wire>
+      <p1 x="220" y="120"/>
+      <p2 x="220" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="380" y="120"/>
+      <p2 x="380" y="340"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

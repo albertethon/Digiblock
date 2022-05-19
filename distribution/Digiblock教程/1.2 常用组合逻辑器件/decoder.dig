@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Bit 0 of the input selection.
+{{de Bit 0 der Signalauswahl.}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>A_0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1640" y="1400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Bit 1 of the input selection.
+{{de Bit 1 der Signalauswahl.}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>A_1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1640" y="1460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Not</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+      </elementAttributes>
+      <pos x="-1580" y="1480"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Not</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation reference="../../../../visualElement[3]/elementAttributes/entry/rotation"/>
+        </entry>
+      </elementAttributes>
+      <pos x="-1520" y="1480"/>
+    </visualElement>
+    <visualElement>
+      <elementName>And</elementName>
+      <elementAttributes/>
+      <pos x="-1460" y="1540"/>
+    </visualElement>
+    <visualElement>
+      <elementName>And</elementName>
+      <elementAttributes/>
+      <pos x="-1460" y="1620"/>
+    </visualElement>
+    <visualElement>
+      <elementName>And</elementName>
+      <elementAttributes/>
+      <pos x="-1460" y="1700"/>
+    </visualElement>
+    <visualElement>
+      <elementName>And</elementName>
+      <elementAttributes/>
+      <pos x="-1460" y="1780"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Output bit. One of the data bits is always output 
+here. Which one is set by the inputs A_0 and A_1.
+{{de Ausgangsbit. Es wird immer eines der Datenbits 
+hier ausgegeben. Welches das ist, legen die 
+Eingänge A_0 und A_1 fest.}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>Y_0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1360" y="1560"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>A_1 A_0 Y_3 Y_2 Y_1 Y_0
+ 0   0   X   X   X   1  
+ 0   1   X   X   1   X  
+ 1   0   X   1   X   X  
+ 1   1   1   X   X   X  
+
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="-1420" y="1460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Output bit. One of the data bits is always output 
+here. Which one is set by the inputs A_0 and A_1.
+{{de Ausgangsbit. Es wird immer eines der Datenbits 
+hier ausgegeben. Welches das ist, legen die 
+Eingänge A_0 und A_1 fest.}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>Y_1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1360" y="1640"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Output bit. One of the data bits is always output 
+here. Which one is set by the inputs A_0 and A_1.
+{{de Ausgangsbit. Es wird immer eines der Datenbits 
+hier ausgegeben. Welches das ist, legen die 
+Eingänge A_0 und A_1 fest.}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>Y_2</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1360" y="1720"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Output bit. One of the data bits is always output 
+here. Which one is set by the inputs A_0 and A_1.
+{{de Ausgangsbit. Es wird immer eines der Datenbits 
+hier ausgegeben. Welches das ist, legen die 
+Eingänge A_0 und A_1 fest.}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>Y_3</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1360" y="1800"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Decoder</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Selector Bits</string>
+          <int>2</int>
+        </entry>
+      </elementAttributes>
+      <pos x="-1440" y="1280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Input Splitting</string>
+          <string>1,1</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>2</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1500" y="1300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Output bit. One of the data bits is always output 
+here. Which one is set by the inputs A_0 and A_1.
+{{de Ausgangsbit. Es wird immer eines der Datenbits 
+hier ausgegeben. Welches das ist, legen die 
+Eingänge A_0 und A_1 fest.}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>X_0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1320" y="1280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Output bit. One of the data bits is always output 
+here. Which one is set by the inputs A_0 and A_1.
+{{de Ausgangsbit. Es wird immer eines der Datenbits 
+hier ausgegeben. Welches das ist, legen die 
+Eingänge A_0 und A_1 fest.}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>X_1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1320" y="1320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Output bit. One of the data bits is always output 
+here. Which one is set by the inputs A_0 and A_1.
+{{de Ausgangsbit. Es wird immer eines der Datenbits 
+hier ausgegeben. Welches das ist, legen die 
+Eingänge A_0 und A_1 fest.}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>X_2</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1320" y="1360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Output bit. One of the data bits is always output 
+here. Which one is set by the inputs A_0 and A_1.
+{{de Ausgangsbit. Es wird immer eines der Datenbits 
+hier ausgegeben. Welches das ist, legen die 
+Eingänge A_0 und A_1 fest.}}</string>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>X_3</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1320" y="1400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>A0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1520" y="1400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>A1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1520" y="1420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>A0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1540" y="1300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>A1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1540" y="1320"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="-1400" y="1280"/>
+      <p2 x="-1320" y="1280"/>
+    </wire>
+    <wire>
+      <p1 x="-1520" y="1540"/>
+      <p2 x="-1460" y="1540"/>
+    </wire>
+    <wire>
+      <p1 x="-1520" y="1700"/>
+      <p2 x="-1460" y="1700"/>
+    </wire>
+    <wire>
+      <p1 x="-1400" y="1640"/>
+      <p2 x="-1360" y="1640"/>
+    </wire>
+    <wire>
+      <p1 x="-1400" y="1800"/>
+      <p2 x="-1360" y="1800"/>
+    </wire>
+    <wire>
+      <p1 x="-1400" y="1320"/>
+      <p2 x="-1360" y="1320"/>
+    </wire>
+    <wire>
+      <p1 x="-1340" y="1320"/>
+      <p2 x="-1320" y="1320"/>
+    </wire>
+    <wire>
+      <p1 x="-1540" y="1320"/>
+      <p2 x="-1500" y="1320"/>
+    </wire>
+    <wire>
+      <p1 x="-1580" y="1580"/>
+      <p2 x="-1460" y="1580"/>
+    </wire>
+    <wire>
+      <p1 x="-1600" y="1740"/>
+      <p2 x="-1460" y="1740"/>
+    </wire>
+    <wire>
+      <p1 x="-1600" y="1420"/>
+      <p2 x="-1520" y="1420"/>
+    </wire>
+    <wire>
+      <p1 x="-1360" y="1360"/>
+      <p2 x="-1320" y="1360"/>
+    </wire>
+    <wire>
+      <p1 x="-1460" y="1360"/>
+      <p2 x="-1420" y="1360"/>
+    </wire>
+    <wire>
+      <p1 x="-1640" y="1460"/>
+      <p2 x="-1600" y="1460"/>
+    </wire>
+    <wire>
+      <p1 x="-1540" y="1460"/>
+      <p2 x="-1520" y="1460"/>
+    </wire>
+    <wire>
+      <p1 x="-1600" y="1460"/>
+      <p2 x="-1580" y="1460"/>
+    </wire>
+    <wire>
+      <p1 x="-1580" y="1620"/>
+      <p2 x="-1460" y="1620"/>
+    </wire>
+    <wire>
+      <p1 x="-1540" y="1780"/>
+      <p2 x="-1460" y="1780"/>
+    </wire>
+    <wire>
+      <p1 x="-1400" y="1300"/>
+      <p2 x="-1340" y="1300"/>
+    </wire>
+    <wire>
+      <p1 x="-1540" y="1300"/>
+      <p2 x="-1500" y="1300"/>
+    </wire>
+    <wire>
+      <p1 x="-1480" y="1300"/>
+      <p2 x="-1460" y="1300"/>
+    </wire>
+    <wire>
+      <p1 x="-1380" y="1400"/>
+      <p2 x="-1320" y="1400"/>
+    </wire>
+    <wire>
+      <p1 x="-1640" y="1400"/>
+      <p2 x="-1540" y="1400"/>
+    </wire>
+    <wire>
+      <p1 x="-1540" y="1400"/>
+      <p2 x="-1520" y="1400"/>
+    </wire>
+    <wire>
+      <p1 x="-1400" y="1560"/>
+      <p2 x="-1360" y="1560"/>
+    </wire>
+    <wire>
+      <p1 x="-1400" y="1720"/>
+      <p2 x="-1360" y="1720"/>
+    </wire>
+    <wire>
+      <p1 x="-1400" y="1340"/>
+      <p2 x="-1380" y="1340"/>
+    </wire>
+    <wire>
+      <p1 x="-1540" y="1660"/>
+      <p2 x="-1460" y="1660"/>
+    </wire>
+    <wire>
+      <p1 x="-1600" y="1820"/>
+      <p2 x="-1460" y="1820"/>
+    </wire>
+    <wire>
+      <p1 x="-1540" y="1400"/>
+      <p2 x="-1540" y="1460"/>
+    </wire>
+    <wire>
+      <p1 x="-1540" y="1780"/>
+      <p2 x="-1540" y="1860"/>
+    </wire>
+    <wire>
+      <p1 x="-1540" y="1460"/>
+      <p2 x="-1540" y="1660"/>
+    </wire>
+    <wire>
+      <p1 x="-1540" y="1660"/>
+      <p2 x="-1540" y="1780"/>
+    </wire>
+    <wire>
+      <p1 x="-1380" y="1340"/>
+      <p2 x="-1380" y="1400"/>
+    </wire>
+    <wire>
+      <p1 x="-1460" y="1300"/>
+      <p2 x="-1460" y="1360"/>
+    </wire>
+    <wire>
+      <p1 x="-1580" y="1460"/>
+      <p2 x="-1580" y="1480"/>
+    </wire>
+    <wire>
+      <p1 x="-1580" y="1520"/>
+      <p2 x="-1580" y="1580"/>
+    </wire>
+    <wire>
+      <p1 x="-1580" y="1580"/>
+      <p2 x="-1580" y="1620"/>
+    </wire>
+    <wire>
+      <p1 x="-1580" y="1620"/>
+      <p2 x="-1580" y="1860"/>
+    </wire>
+    <wire>
+      <p1 x="-1340" y="1300"/>
+      <p2 x="-1340" y="1320"/>
+    </wire>
+    <wire>
+      <p1 x="-1420" y="1340"/>
+      <p2 x="-1420" y="1360"/>
+    </wire>
+    <wire>
+      <p1 x="-1600" y="1420"/>
+      <p2 x="-1600" y="1460"/>
+    </wire>
+    <wire>
+      <p1 x="-1600" y="1460"/>
+      <p2 x="-1600" y="1740"/>
+    </wire>
+    <wire>
+      <p1 x="-1600" y="1820"/>
+      <p2 x="-1600" y="1860"/>
+    </wire>
+    <wire>
+      <p1 x="-1600" y="1740"/>
+      <p2 x="-1600" y="1820"/>
+    </wire>
+    <wire>
+      <p1 x="-1520" y="1460"/>
+      <p2 x="-1520" y="1480"/>
+    </wire>
+    <wire>
+      <p1 x="-1520" y="1520"/>
+      <p2 x="-1520" y="1540"/>
+    </wire>
+    <wire>
+      <p1 x="-1520" y="1540"/>
+      <p2 x="-1520" y="1700"/>
+    </wire>
+    <wire>
+      <p1 x="-1520" y="1700"/>
+      <p2 x="-1520" y="1860"/>
+    </wire>
+    <wire>
+      <p1 x="-1360" y="1320"/>
+      <p2 x="-1360" y="1360"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>
