@@ -10,7 +10,7 @@ import de.neemann.digiblock.core.extern.handler.ProcessInterface;
 import de.neemann.digiblock.core.extern.handler.StdIOInterface;
 import de.neemann.digiblock.gui.Settings;
 import de.neemann.digiblock.lang.Lang;
-import sun.misc.IOUtils;
+//import sun.misc.IOUtils;
 
 import java.io.File;
 import java.io.IOException;

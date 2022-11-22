@@ -212,7 +212,7 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
         }
 
         try {
-            armv8TempFile = File.createTempFile("armv8", ".jar");
+            armv8TempFile = File.createTempFile("arm8", ".jar");
             armv8TempFile.deleteOnExit();
             try (FileOutputStream out1 = new FileOutputStream(armv8TempFile);
                  InputStream in1 = ClassLoader.getSystemResourceAsStream("ARMv8_Assembler.jar")) {
@@ -968,6 +968,18 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
             }
         }.setToolTip(Lang.get("menu_labelPins_tt"));
 
+        ToolTipAction find = new ToolTipAction(Lang.get("menu_find")) {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String search = showInputDialog(Lang.get("menu_find"));
+                if (search != null && !search.isEmpty()) {
+                    ArrayList<VisualElement> found = getCircuitComponent().getCircuit().findElements(search);
+                    getCircuitComponent().removeHighLighted();
+                    getCircuitComponent().addHighLighted(found);
+                }
+            }
+        }.setAcceleratorCTRLplus('F').enableAcceleratorIn(getCircuitComponent()).setToolTip(Lang.get("menu_find_tt"));
+
         edit.add(circuitComponent.getUndoAction().createJMenuItemNoIcon());
         edit.add(circuitComponent.getRedoAction().createJMenuItemNoIcon());
         edit.addSeparator();
@@ -987,6 +999,7 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
         edit.add(circuitComponent.getPasteAction().createJMenuItem());
         edit.add(circuitComponent.getRotateAction().createJMenuItem());
         edit.add(insertAsNew.createJMenuItem());
+        edit.add(find.createJMenuItem());
         edit.addSeparator();
         edit.add(editSettings.createJMenuItem());
     }

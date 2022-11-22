@@ -26,6 +26,7 @@ import de.neemann.digiblock.draw.graphics.*;
 import de.neemann.digiblock.draw.model.InverterConfig;
 import de.neemann.digiblock.draw.shapes.CustomCircuitShapeType;
 import de.neemann.digiblock.draw.shapes.Drawable;
+import de.neemann.digiblock.draw.shapes.Shape;
 import de.neemann.digiblock.draw.shapes.ShapeFactory;
 import de.neemann.digiblock.draw.shapes.custom.CustomShapeDescription;
 import de.neemann.digiblock.gui.components.TransformHolder;
@@ -745,4 +746,35 @@ public class Circuit implements Copyable<Circuit> {
             return m;
         }
     }
+    /**
+     * Returns a list of elements that matches the given string.
+     * Searches in labels, descriptions, pin numbers and pin labels.
+     *
+     * @param search the string to search for
+     * @return the matching elements
+     */
+    public ArrayList<VisualElement> findElements(String search) {
+        search = search.toLowerCase();
+        ArrayList<VisualElement> found = new ArrayList<>();
+        for (VisualElement ve : visualElements) {
+            ElementAttributes attr = ve.getElementAttributes();
+            boolean match = (attr.getLabel().toLowerCase().contains(search))
+                    || (attr.get(Keys.DESCRIPTION).toLowerCase().contains(search))
+                    || (attr.get(Keys.NETNAME).toLowerCase().contains(search))
+                    || (attr.get(Keys.PINNUMBER).toLowerCase().contains(search));
+
+            if (!match) {
+                Shape shape = ve.getShape();
+                for (Pin p : shape.getPins())
+                    if (p.getName().toLowerCase().contains(search)) {
+                        match = true;
+                        break;
+                    }
+            }
+            if (match)
+                found.add(ve);
+        }
+        return found;
+    }
+
 }
