@@ -147,8 +147,7 @@ public class ElementLibrary implements Iterable<ElementLibrary.ElementContainer>
                                 .add(Terminal.DESCRIPTION)
                                 .add(VGA.DESCRIPTION)
                                 .add(MIDI.DESCRIPTION)
-                                .add(PinControl.DESCRIPTION)
-                                .add(Bus.DESCRIPTION)))
+                                .add(PinControl.DESCRIPTION)))
                 .add(new LibraryNode(Lang.get("lib_wires"))
                         .add(Ground.DESCRIPTION)
                         .add(VDD.DESCRIPTION)
@@ -223,7 +222,8 @@ public class ElementLibrary implements Iterable<ElementLibrary.ElementContainer>
                         .add(Reset.DESCRIPTION)
                         .add(Break.DESCRIPTION)
                         .add(AsyncSeq.DESCRIPTION)
-                        .add(External.DESCRIPTION));
+                        .add(External.DESCRIPTION)
+                        .add(Bus.DESCRIPTION));
 //                .add(new LibraryNode(Lang.get("lib_ip"))
 //                        .add(new LibraryNode(Lang.get("lib_lattice"))
 //                        .add(new LibraryNode(Lang.get("lib_machXO2"))
